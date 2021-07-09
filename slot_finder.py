@@ -1,5 +1,6 @@
 import pandas as pd
 from datetime import datetime, timedelta
+from time import time, sleep
 
 
 present_day = datetime.now()
@@ -22,15 +23,18 @@ def pincode_find(n):
         return message
 
 
-df = pd.read_json(URL_1)
-  center = df['centers']
-  for i in pin:
-    status = pincode_find(i)
-    if status != None:
-      print(status)
-df = pd.read_json(URL_2)
-  center = df['centers']
-  for i in pin:
-    status = pincode_find(i)
-    if status != None:
-      print(status)
+while True:
+    sleep(30 - time() % 30)
+    df = pd.read_json(URL_1)
+    center = df['centers']
+    for i in pin:
+        status = pincode_find(i, center)
+        if status != None:
+            print(status)
+    sleep(30 - time() % 30)
+    df = pd.read_json(URL_2)
+    center = df['centers']
+    for i in pin:
+        status = pincode_find(i, center)
+        if status != None:
+            print(status)
