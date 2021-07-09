@@ -1,7 +1,11 @@
 import pandas as pd
 from datetime import datetime, timedelta
 from time import time, sleep
+import requests
+import telegramids
 
+
+bot_api = 'https://api.telegram.org/bot' + telegramids.bot_Key + '/sendmessage?chat_id=' + telegramids.group_id + '&text='
 
 present_day = datetime.now()
 present_day_formatted = present_day.strftime('%d-%m-%Y')
@@ -30,6 +34,7 @@ while True:
     for i in pin:
         status = pincode_find(i, center)
         if status != None:
+            requests.get(bot_api+status)
             print(status)
     sleep(30 - time() % 30)
     df = pd.read_json(URL_2)
@@ -37,4 +42,5 @@ while True:
     for i in pin:
         status = pincode_find(i, center)
         if status != None:
+            requests.get(bot_api+status)
             print(status)
