@@ -1,8 +1,14 @@
 import pandas as pd
+from datetime import datetime, timedelta
 
 
-URL_1 = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=302&date=28-06-2021'
-URL_2 = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=302&date=29-06-2021'
+present_day = datetime.now()
+present_day_formatted = present_day.strftime('%d-%m-%Y')
+next_day = present_day + timedelta(1)
+next_day_formatted = next_day.strftime('%d-%m-%Y')
+
+URL_1 = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=302&date='+present_day_formatted
+URL_2 = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=302&date='+next_day_formatted
 
 pin = [676306, 676305, 676501]
 
